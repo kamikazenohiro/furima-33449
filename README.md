@@ -11,7 +11,7 @@
 | first_name         | string  | null: false               |
 | last_kana          | string  | null: false               |
 | first_kana         | string  | null: false               |
-| date               | integer | null: false               |
+| date               | date    | null: false               |
 
 
 ### Association
@@ -24,7 +24,7 @@
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
 | name             | string     | null: false       |
-| describe         | string     | null: false       |
+| describe         | text       | null: false       |
 | category_id      | integer    | null: false       |
 | condition_id     | integer    | null: false       |
 | shipping_fee_id  | integer    | null: false       |
