@@ -94,7 +94,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('First kana is invalid. Input full-width katakana characters.')
     end
     it '生年月日が必須であること' do
-      @user.date = '1944-10-00'
+      @user.date = nil
       @user.valid?
       expect(@user.errors.full_messages).to include("Date can't be blank")
     end
