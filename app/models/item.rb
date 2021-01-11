@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
-  validates :category_id,  numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
+  belongs_to :shipping_fee
+  validates :category_id,     numericality: { other_than: 1 }
+  validates :condition_id,    numericality: { other_than: 1 }
+  validates :shipping_fee_id, numericality: { other_than: 1 }
 end
