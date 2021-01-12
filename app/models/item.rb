@@ -3,6 +3,11 @@ class Item < ApplicationRecord
   
   has_one_attached :image
 
+  validates :image,    presence: true
+  validates :name,     presence: true
+  validates :describe, presence: true
+  validates :price,    presence: true
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
