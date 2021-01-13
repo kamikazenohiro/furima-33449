@@ -7,9 +7,8 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :describe
+    validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
   end
-
-  validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
