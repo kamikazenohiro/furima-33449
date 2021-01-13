@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   validates :image,    presence: true
   validates :name,     presence: true
   validates :describe, presence: true
-  validates :price, inclusion: { in: 300..9999999 }
+  validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
