@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :correct_user, only: [:edit]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -42,5 +43,12 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def correct_user
+    @item = current_user.items.find_by(id: params[:id])
+    unless @item
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
