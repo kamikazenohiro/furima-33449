@@ -1,13 +1,13 @@
 class Item < ApplicationRecord
   belongs_to :user
-  
+
   has_one_attached :image
 
   with_options presence: true do
     validates :image
     validates :name
     validates :describe
-    validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999
+    validates_numericality_of :price, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
