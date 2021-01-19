@@ -1,4 +1,6 @@
 class ItemsBuysController < ApplicationController
+  before_action :authenticate_user!, only: :index
+  before_action :set_item_buy, only: [:index, :create]
 
   def index
     @order = Order.new
@@ -15,6 +17,10 @@ class ItemsBuysController < ApplicationController
   end
 
   private
+
+  def set_item_buy
+    @item = Item.find(params[:item_id])
+  end
 
   def items_buy_params
     params.require(:order).permit(:postal_code, :prefecture_id, :municipalities, :block_number, :building_name,
