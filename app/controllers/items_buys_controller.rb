@@ -5,7 +5,6 @@ class ItemsBuysController < ApplicationController
   end
 
   def create
-    #binding.pry
     @order = Order.new(items_buy_params)
     if @order.valid?
       @order.save
@@ -18,7 +17,8 @@ class ItemsBuysController < ApplicationController
   private
 
   def items_buy_params
-    params.require(:order).permit(:postal_code, :prefecture, :municipalities, :block_number, :building_name, :phone_number, :items_buy_id)
+    params.require(:order).permit(:postal_code, :prefecture_id, :municipalities, :block_number, :building_name,
+                                  :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
 end
