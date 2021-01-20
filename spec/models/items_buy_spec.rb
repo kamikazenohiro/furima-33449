@@ -61,6 +61,11 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number can't be blank")
       end
+      it '電話番号が英数混合では登録できないこと' do
+        @order.phone_number = '090a1234567'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
       it '電話番号にハイフンは不要であること' do
         @order.phone_number = '0000-00-000'
         @order.valid?
