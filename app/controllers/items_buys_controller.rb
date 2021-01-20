@@ -1,11 +1,12 @@
 class ItemsBuysController < ApplicationController
   before_action :authenticate_user!, only: :index
-  #before_action :sold_out_item, only: [:index]
   before_action :set_item_buy, only: [:index, :create]
 
   def index
     @order = Order.new
-    if current_user == @item.user
+    if @item.items_buy.present?
+      redirect_to root_path
+    elsif current_user == @item.user
       redirect_to root_path
     end
   end
@@ -39,10 +40,5 @@ class ItemsBuysController < ApplicationController
       card: items_buy_params[:token],
       currency:'jpy'
     )
- end
-
-  #def sold_out_item
-  #  redirect_to root_path if @item.items_buy.present?
-  #end
-
+  end
 end
