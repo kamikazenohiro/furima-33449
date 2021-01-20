@@ -25,7 +25,7 @@ class ItemsBuysController < ApplicationController
 
   def items_buy_params
     params.require(:order).permit(:postal_code, :prefecture_id, :municipalities, :block_number, :building_name,
-                                  :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+                                  :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   #def sold_out_item
