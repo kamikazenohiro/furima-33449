@@ -1,5 +1,14 @@
 require 'rails_helper'
+RSpec.describe Order, type: :model do
+  before do
+    @order = FactoryBot.build(:order)
+  end
 
-RSpec.describe ItemsBuy, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '商品購入' do
+    context '商品購入がうまくいくとき' do
+      it 'トークンと各情報が存在すれば商品購入できる' do
+        expect(@order).to be_valid
+      end
+    end
+  end
 end
