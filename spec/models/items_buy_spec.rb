@@ -9,9 +9,23 @@ RSpec.describe Order, type: :model do
       it 'トークンと各情報が存在すれば商品購入できる' do
         expect(@order).to be_valid
       end
+      it 'ビル名は空でも商品購入できる' do
+        @order.building_name = nil
+        expect(@order).to be_valid
+      end
     end
 
     context '商品購入がうまくいかないとき' do
+      it 'ユーザーの情報が必須であること' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'アイテムの情報が必須であること' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
+      end
       it 'トークンが必須であること' do
         @order.token = nil
         @order.valid?
