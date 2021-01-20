@@ -7,6 +7,7 @@ class Order
     validates :municipalities
     validates :block_number
     validates :phone_number, format: { with: /\A[0-9]+\z/}
+    validates :token
   end
 
   validates :prefecture_id, numericality: { other_than: 0, message: "Select" }
